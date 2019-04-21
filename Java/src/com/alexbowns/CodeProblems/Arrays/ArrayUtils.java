@@ -1,9 +1,8 @@
-package com.alexbowns.CodeProblems;
+package com.alexbowns.CodeProblems.Arrays;
 
 import java.util.Arrays;
-import java.util.Collections;
 
-public class ArrayProblems {
+public class ArrayUtils {
 
     public static int largestProductOfN(int[] values, int n) throws Exception
     {
