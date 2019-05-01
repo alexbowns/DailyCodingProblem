@@ -42,4 +42,64 @@ public class ArrayUtilsTest {
             Assert.fail(e.toString());
         }
     }
+
+    @Test
+    public void subsetThatSumsToK()
+    {
+        // given
+        int[] values = {1, 2, 3, 4, 5};
+        // when
+        int[] actual = ArrayUtils.subsetThatSumsToK(values, 9);
+        // then
+        int[] expected = {2,3,4};
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void subsetThatSumsToK_NotSorted()
+    {
+        // given
+        int[] values = {3, 2, 5, 4, 1};
+        // when
+        int[] actual = ArrayUtils.subsetThatSumsToK(values, 9);
+        // then
+        int[] expected = {5,4};
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void subsetThatSumsToK_SmallArray()
+    {
+        // given
+        int[] values = {9};
+        // when
+        int[] actual = ArrayUtils.subsetThatSumsToK(values, 9);
+        // then
+        int[] expected = {9};
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void subsetThatSumsToK_NoSolution()
+    {
+        // given
+        int[] values = {1, 2, 3, 4, 5};
+        // when
+        int[] actual = ArrayUtils.subsetThatSumsToK(values, -1);
+        // then
+        int[] expected = null;
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void subsetThatSumsToK_DuplicateValues()
+    {
+        // given
+        int[] values = {1, 3, 3, 3, 5, 4};
+        // when
+        int[] actual = ArrayUtils.subsetThatSumsToK(values, 9);
+        // then
+        int[] expected = {3,3,3};
+        Assert.assertArrayEquals(expected, actual);
+    }
 }

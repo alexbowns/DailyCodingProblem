@@ -1,6 +1,7 @@
 package com.alexbowns.CodeProblems.Arrays;
 
 import java.util.Arrays;
+import java.util.Hashtable;
 
 public class ArrayUtils {
 
@@ -37,6 +38,28 @@ public class ArrayUtils {
 
         Arrays.sort(values);
         return Arrays.copyOfRange(values, 0, n);
+    }
+
+    public static int[] subsetThatSumsToK(int[] values, int k)
+    {
+        if (values == null || values.length == 0)
+            return null;
+
+        Hashtable<Integer, Integer> totalSumAtIndex = new Hashtable<>();
+        totalSumAtIndex.put(0, -1);
+        int totalSum = 0;
+        for (int i = 0; i < values.length; i++)
+        {
+            totalSum += values[i];
+            totalSumAtIndex.put(totalSum, i);
+            if (totalSumAtIndex.containsKey(totalSum - k))
+            {
+                int lowIdx = totalSumAtIndex.get(totalSum - k);
+                return Arrays.copyOfRange(values, lowIdx+1, i+1);
+            }
+        }
+
+        return null;
     }
 
     private static int product(int[] values) throws Exception
